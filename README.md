@@ -1,7 +1,11 @@
 # Image Majik #
+This is the markdown cheatsheet which is useful when you want to edit markdown file.
+
+[Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 # Description of this project #
-This project is a website for uses managing and editing the image files.
+This project is a website for users to manage and edit the image files.
+This project is written on Ruby and Rails.
 
 # Key Features #
 1. Personal Details Management
@@ -18,32 +22,13 @@ This project is a website for uses managing and editing the image files.
     * Both of original and new image can be saved on the website
 
 
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
+* Start the terminal and go to the folder
+* Add command "rails s" into your terminal or shell
+* Start your browser and fill in the URL "http://localhost:3000/"
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Email: chennang@student.unimelb.edu.au
