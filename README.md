@@ -5,17 +5,17 @@ This project is a website for uses managing and editing the image files.
 
 # Key Features #
 * Personal Details Management
-**  Registering & login & Add/edit personal details
+  * Registering & login & Add/edit personal details
 * Image Files Management
-* Upload the image file to a personal box on the website
-* Images can be shared to others
-* Different users have different authority of the images with different actions
-* Delete the files into a trash folder, and then empty the trash folder
-* Versions can be tracked by number or tags
-* Many versions can be selected at one time with certain actions
+  * Upload the image file to a personal box on the website
+  * Images can be shared to others
+  * Different users have different authority of the images with different actions
+  * Delete the files into a trash folder, and then empty the trash folder
+  * Versions can be tracked by number or tags
+  * Many versions can be selected at one time with certain actions
 * Editing Images
-* New version of image can be created as a filter is selected
-* Both of original and new image can be saved on the website
+  * New version of image can be created as a filter is selected
+  * Both of original and new image can be saved on the website
 
 
 # README #
