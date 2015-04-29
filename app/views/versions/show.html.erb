@@ -1,0 +1,38 @@
+<h1><%= @image.name + "- Versions" %></h1>
+
+<%= link_to 'Back', folder_image_path(@folder, @image), class: "btn btn-default" %>
+
+<br><br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Owner</th>
+      <th>Version</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @my_version_images.each do |image| %>
+      <tr>
+        <td><%= link_to (image_tag image.file.url(:thumb).to_s, class:"img-rounded"), folder_image_path(@folder, image) %></td>
+        <td><%= image.name %></td>
+        <td><%= image.ownerships.find_by(is_owner: true).user.username %></td>
+        <td><%= image.version.version_identify %></td>
+        <% if @folder.purpose != "trash" %>
+          <% if Ownership.find_by(image_id: image.id, user_id: current_user.id).is_owner %>
+            <td><%= link_to 'Edit', edit_folder_image_path(@folder, image), class: "btn btn-default" %></td>
+          <% end %>
+          <td><%= link_to 'Download', download_folder_image_path(@folder, image), class: "btn btn-primary" %></td>
+          <td><%= link_to 'Delete', delete_folder_image_path(@folder, image), class: "btn btn-warning", data: { confirm: 'Are you sure to delete this image?' } %></td>
+        <% else %>
+          <td><%= link_to 'Put Back', put_back_folder_image_path(@folder, image), class: "btn btn-default" %></td>
+          <td><%= link_to 'Destroy', [@folder, image], method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure to destroy this image?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

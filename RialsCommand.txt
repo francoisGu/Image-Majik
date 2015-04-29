@@ -1,0 +1,19 @@
+1.Devise
+2.Carrierwave
+3.JS & HTML5 -> IMG.LY
+
+
+rails g controller image
+rails g model image
+
+gemfile:
+gem 'devise'
+bundle
+rails generate devise:install
+
+
+rails generate devise User name:string
+
+rails g migration images_folders
+
+rake db:migrate

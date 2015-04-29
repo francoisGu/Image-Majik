@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-4">
+    <h2><%= @image.name %></h2>
+    <br>
+
+    <p>
+      <strong>Owner:</strong>
+      <%= @image.ownerships.find_by(is_owner: true).user.username %>
+    </p>
+
+    <p>
+      <strong>Version:</strong>
+      <%= link_to @image.version.version_identify, folder_image_version_path(@folder, @image, @image.version) %>
+    </p>
+
+    <p>
+      <strong>Original Image:</strong>
+      <% original_image = Version.find(@image.version.root_id).image %>
+      <% if original_image.users.include?(current_user) %>
+        <%= link_to original_image.name, folder_image_path(@folder, original_image) %>
+      <% else %>
+        <%= "Not available." %>
+      <% end %>
+    </p>
+
+
+    <p>
+      <strong>Shared to:</strong>
+      <% @image.ownerships.includes(:user).where(is_owner: false).each do |ownership| %>
+        <%= ownership.user.username %> |
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Added to:</strong>
+      <% @image.folders.where(user_id: current_user, purpose: "album").each do |album| %>
+        <%= album.name %> |
+      <% end %>
+    </p>
+
+    <% if Ownership.find_by(image_id: @image.id, user_id: current_user.id).is_owner %>
+      <%= link_to 'Edit', edit_folder_image_path(@folder, @image), class: "btn btn-default" %> |
+      <%= link_to 'Delete', delete_folder_image_path(@folder, @image), class: "btn btn-default", data: { confirm: 'Are you sure to delete this image?' } %> |
+    <% end %>
+    <%= link_to 'Download', download_folder_image_path(@folder, @image),class: "btn btn-default" %> |
+    <%= link_to 'Back', folder_path(@folder), class: "btn btn-default" %>
+    <br>
+  </div>
+  <div class="col-md-8", style="border-left: 1px solid">
+    <p style="text-align:center">
+      <%= image_tag @image.file.url.to_s, style: "max-width: 100%" %>
+    </p>
+  </div>
+</div>

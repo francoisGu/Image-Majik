@@ -1,0 +1,28 @@
+<h2>Albums</h2>
+<%= link_to 'New Album', new_folder_path, class: "btn btn-default" %>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to image_tag("main.png", size: "180x180"), @folders.find_by(purpose: "main") %><br>
+      <%= link_to "Main", @folders.find_by(purpose: "main") %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to image_tag("share.png", size: "180x180"), @folders.find_by(purpose: "share") %><br>
+      <%= link_to "Share", @folders.find_by(purpose: "share") %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to image_tag("trash.png", size: "180x180"), @folders.find_by(purpose: "trash") %><br>
+      <%= link_to "Trash", @folders.find_by(purpose: "trash") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @folders.where(purpose: "album").each do |album| %>
+      <div class="col-md-3">
+        <%= link_to image_tag("album.png", size: "140x140"), album %><br>
+        <%= link_to album.name, album %>
+      </div>
+    <% end %>
+  </div>
+</div>

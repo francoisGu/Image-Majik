@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-md-4">
+    <h2>Editing image</h2>
+
+    <%= link_to 'Show', folder_image_path(@folder, @image), class: "btn btn-default" %> |
+    <%= link_to 'Download', download_folder_image_path(@folder, @image), class: "btn btn-default" %> |
+    <%= link_to 'Delete', delete_folder_image_path(@folder, @image), class: "btn btn-default", data: { confirm: 'Are you sure to delete this image?' } %> |
+    <%= link_to 'Back', folder_path(@folder), class: "btn btn-default" %>
+
+    <br><br>
+
+    <%= render 'form' %>
+
+    <p>
+      <strong>Version:</strong>
+      <%= link_to @image.version.version_identify, folder_image_version_path(@folder, @image, @image.version) %>
+    </p>
+
+    <p>
+      <strong>Original Image:</strong>
+      <% original_image = Version.find(@image.version.root_id).image %>
+      <% if original_image.users.include?(current_user) %>
+        <%= link_to original_image.name, folder_image_path(@folder, original_image) %>
+      <% else %>
+        <%= "Not available." %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Share to:</strong>
+      <% @image.ownerships.includes(:user).where(is_owner: false).each do |ownership| %>
+        <%= ownership.user.username  %> |
+      <% end %>
+
+      <%= form_tag(share_folder_image_path(@folder, @image), method: "get") do %>
+        <div class="form-group">
+          <%= text_field_tag(:user_share_to, nil, class: "form-control") %>
+        </div>
+        <%= submit_tag("Add", class: "btn btn-default") %>
+        <%= submit_tag("Delete", class: "btn btn-default") %>
+      <% end %>
+    </p>
+
+    <br>
+
+    <p>
+      <strong>Added to:</strong>
+      <% @image.folders.where(user_id: current_user, purpose: "album").each do |album| %>
+        <%= album.name %> |
+      <% end %>
+      <%= form_tag(add_to_album_folder_image_path(@folder, @image), method: "get", class: "form-inline") do %>
+        <% options = Folder.where(user_id: current_user.id, purpose: "album").pluck(:name, :id) %>
+        <%= select_tag(:album_to, options_for_select(options), class:"form-control") %>
+        <%= submit_tag("Add", class: "btn btn-default") %>
+      <% end %>
+    </p>
+  </div>
+
+  <div class="col-md-6", style="border-left: 1px solid; border-right: 1px solid">
+    <p style="text-align:center">
+      <%= image_tag @image.file.url.to_s, style: "max-width: 100%" %>
+    </p>
+  </div>
+
+  <div class="col-md-2">
+    <div class="row">
+      <%= link_to 'Blue Shift', add_filter_folder_image_path(@folder, @image, filter_option: 0), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Charcoal', add_filter_folder_image_path(@folder, @image, filter_option: 1), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Flop', add_filter_folder_image_path(@folder, @image, filter_option: 2), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Frame', add_filter_folder_image_path(@folder, @image, filter_option: 3), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Motion Blur', add_filter_folder_image_path(@folder, @image, filter_option: 4), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Normalize', add_filter_folder_image_path(@folder, @image, filter_option: 5), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Oil Paint', add_filter_folder_image_path(@folder, @image, filter_option: 6), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Posterize', add_filter_folder_image_path(@folder, @image, filter_option: 7), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Quantize', add_filter_folder_image_path(@folder, @image, filter_option: 8), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Rotate', add_filter_folder_image_path(@folder, @image, filter_option: 9), class: "btn btn-default" %>
+    </div>
+    <div class="row">
+      <%= link_to 'Sepiatone', add_filter_folder_image_path(@folder, @image, filter_option: 10), class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
