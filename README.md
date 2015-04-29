@@ -1,4 +1,3 @@
-
 # Image Majik #
 
 # Description of this project #
@@ -6,7 +5,7 @@ This project is a website for uses managing and editing the image files.
 
 # Key Features #
 * Personal Details Management
-* Registering & login & Add/edit personal details
+** Registering & login & Add/edit personal details
 * Image Files Management
 * Upload the image file to a personal box on the website
 * Images can be shared to others
