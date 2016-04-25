@@ -21,7 +21,7 @@ This project is written on Ruby and Rails.
     * New version of image can be created as a filter is selected
     * Both of original and new image can be saved on the website
 
-
+4. Test 25_4
 
 ### How do I get set up? ###
 
